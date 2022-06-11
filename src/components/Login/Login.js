@@ -12,11 +12,25 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+
+  }, []);
+
+  useEffect(() => {
+
+    // debouncing user input (end of typing vs. every key stroke)
+    const identifier = setTimeout(() => {
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    // cleanup function (reset after every run, i.e. before it runs)
+    return () => {
+      clearTimeout(identifier);
+    };
+
     // we can omit setFormIsValid, as state updating functions in React by default never change
-  }, [setFormIsValid, enteredEmail, enteredPassword]);
+  }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
