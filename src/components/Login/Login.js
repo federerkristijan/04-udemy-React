@@ -13,6 +13,10 @@ const Login = (props) => {
 
   useEffect(() => {
 
+  }, []);
+
+  useEffect(() => {
+
     // debouncing user input (end of typing vs. every key stroke)
     const identifier = setTimeout(() => {
       setFormIsValid(
