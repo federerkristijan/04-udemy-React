@@ -1,7 +1,7 @@
 import React from "react";
-import "./Input.module.css";
-import classes from 'Input.module.css';
+import classes from './Input.module.css';
 
+// props and not useContext because props are reusable!
 const Input = props => {
   return (
     <div
@@ -13,9 +13,9 @@ const Input = props => {
       <input
         type={props.id}
         id={props.id}
-        value={emailState.value}
-        onChange={emailChangeHandler}
-        onBlur={validateEmailHandler}
+        value={props.value}
+        onChange={props.onChange}
+        onBlur={props.onBlur}
       />
     </div>
   );
